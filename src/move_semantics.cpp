@@ -59,6 +59,20 @@ void add_three_and_print(std::vector<int> &&vec) {
   std::cout << "\n";
 }
 
+
+template<typename T>
+void f1(T& t) {  // 左值.
+  std::cout << "type = " << typeid(T).name() << std::endl;
+  // t += 1;
+}
+
+template<typename T>
+void f2(T&& t) {  // 绑定可修改的右值.
+  std::cout << "type = " << typeid(T).name() << std::endl;
+  t += '!';  
+  std::cout << t << std::endl;
+}
+
 int main() {
   // Take this expression. Note that 'a' is a lvalue, since it's a variable that
   // refers to a specific space in memory (where 'a' is stored). 10 is a rvalue.
@@ -105,6 +119,16 @@ int main() {
 
   // As seen here, we can print from this array.
   std::cout << "Printing from int_array3: " << int_array3[1] << std::endl;
-
+  
+  std::string s = "hello";
+  f2(std::move(s));
+  std::cout << s << std::endl;
+  f2(s);
+  f2(1);
+  
+  const int ci = 1;
+  int i = 1;
+  f1(i);
+  f1(ci);
   return 0;
 }
