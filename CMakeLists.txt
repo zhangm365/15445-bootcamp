@@ -25,6 +25,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin")
 add_executable(references src/references.cpp)
 add_executable(move_semantics src/move_semantics.cpp)
 add_executable(move_constructors src/move_constructors.cpp)
+add_executable(forward src/forward.cpp)
 
 # Compiling templates executables
 add_executable(templated_functions src/templated_functions.cpp)
