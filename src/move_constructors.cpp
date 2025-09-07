@@ -54,23 +54,25 @@ public:
   // significant copying cost. Generally, for numeric types, it's okay to copy
   // them, but for other types, such as strings and object types, one should
   // move the class instance unless copying is necessary.
-  Person(Person &&person)
-      : age_(person.age_), nicknames_(std::move(person.nicknames_)),
-        valid_(true) {
+  Person(Person &&person) noexcept 
+      : age_(person.age_), nicknames_(std::move(person.nicknames_)), valid_(true) {
     std::cout << "Calling the move constructor for class Person.\n";
     // The moved object's validity tag is set to false.
     person.valid_ = false;
   }
 
   // Move assignment operator for class Person.
-  Person &operator=(Person &&other) {
+  Person &operator=(Person &&other) noexcept {
     std::cout << "Calling the move assignment operator for class Person.\n";
-    age_ = other.age_;
-    nicknames_ = std::move(other.nicknames_);
-    valid_ = true;
+    // Self-assignment check.
+    if (this != &other) {
+      age_ = other.age_;
+      nicknames_ = std::move(other.nicknames_);
+      valid_ = true;
 
-    // The moved object's validity tag is set to false.
-    other.valid_ = false;
+      // The moved object's validity tag is set to false.
+      other.valid_ = false;
+    }
     return *this;
   }
 
