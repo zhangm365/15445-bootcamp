@@ -44,13 +44,25 @@ int main() {
   // You can also insert multiple elements at a time by passing in an
   // initializer list of pairs.
   map.insert({{"spam", 1}, {"eggs", 2}, {"garlic rice", 3}});
-
+  // insert duplicated key, will be ignored.
+  auto res = map.insert({"spam", 4});
+  std::cout << "Inserting the duplicated key [spam] is " 
+            << (res.second ? "succeeded" : "failed") << std::endl;
+  
   // It is also possible to insert an element via array-style syntax,
   // even if the element did not exist previously.
   map["bacon"] = 5;
 
   // You can also update an element in the unordered map with the same syntax.
   map["spam"] = 15;
+  
+  std::cout << "The size of the unordered map is: " << map.size() << std::endl;
+  std::cout << "The initial unordered map elements are:\n";
+  for (auto it = map.begin(); it != map.end(); ++it) {
+    std::cout << "(" << it->first << "," << it->second << ")"
+              << " ";
+  }
+  std::cout << std::endl;
 
   // The find function is used to find elements in an unordered map. It returns
   // an iterator pointing to the found element if the element exists, and

@@ -24,7 +24,8 @@
 // for buggy and non functional code. So be careful!
 
 // Basic templated class with very long name, to show the usefulness of auto.
-template <typename T, typename U> class Abcdefghijklmnopqrstuvwxyz {
+template <typename T, typename U> 
+class Abcdefghijklmnopqrstuvwxyz {
 public:
   Abcdefghijklmnopqrstuvwxyz(T instance1, U instance2)
       : instance1_(instance1), instance2_(instance2) {}
@@ -63,6 +64,7 @@ int main() {
   // type name is heavily templated, and using auto may be helpful.
   Abcdefghijklmnopqrstuvwxyz<int, int> obj = construct_obj<int>(2);
   auto obj1 = construct_obj<int>(2);
+  obj1.print();
 
   // Maybe for one line it does not seem all that convenient, but imagine
   // if using a class with a very long name was useful in the code for
