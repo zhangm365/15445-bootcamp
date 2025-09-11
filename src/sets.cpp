@@ -36,9 +36,17 @@ int main() {
     int_set.insert(i);
   }
 
+  int_set.insert(11);
+
   for (int i = 6; i <= 10; ++i) {
     int_set.emplace(i);
   }
+
+  // sorted set of unique elements
+  for (auto it = int_set.begin(); it != int_set.end(); ++it) {
+    std::cout << *it << " ";
+  }
+  std::cout << std::endl;
 
   // To find an element, we can use the find function, which returns an
   // iterator that points to the element within the set with the key that is

@@ -44,6 +44,7 @@ int main() {
   // You can also insert multiple elements at a time by passing in an
   // initializer list of pairs.
   map.insert({{"spam", 1}, {"eggs", 2}, {"garlic rice", 3}});
+  
   // insert duplicated key, will be ignored.
   auto res = map.insert({"spam", 4});
   std::cout << "Inserting the duplicated key [spam] is " 
