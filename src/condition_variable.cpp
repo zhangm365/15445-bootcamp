@@ -31,7 +31,7 @@
 
 // Defining a global count variable, a mutex, and a condition variable to
 // be used by both threads.
-int count = 0;
+volatile int count = 0;
 std::mutex m;
 
 // This is the syntax for declaring and default initializing a condition 
@@ -58,7 +58,7 @@ void add_count_and_notify() {
 // condition variables. Particularly, it is moveable but not copy-constructible
 // or copy-assignable.
 void waiter_thread() {
-  std::unique_lock lk(m);
+  std::unique_lock lk(m);    // std::unique_lock can be used as a RAII-style write lock.
   cv.wait(lk, []{return count == 2;});
 
   std::cout << "Printing count: " << count << std::endl;
